@@ -23,6 +23,8 @@ dotenv_file = BASE_DIR / '.env.local'
 
 if path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
+else:
+    dotenv.load_dotenv()
 
 DEVELOPMENT_MODE = getenv('DEVELOPMENT_MODE', 'False') == 'True'
 
