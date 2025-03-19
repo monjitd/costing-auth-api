@@ -24,7 +24,7 @@ dotenv_file = BASE_DIR / '.env.local'
 if path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 
-DEVELOPMENT_MODE = getenv("DEVELOPMENT_MODE", "False") == "True"
+DEVELOPMENT_MODE = getenv('DEVELOPMENT_MODE', 'False') == 'True'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -33,9 +33,9 @@ DEVELOPMENT_MODE = getenv("DEVELOPMENT_MODE", "False") == "True"
 SECRET_KEY = getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = getenv("DEBUG", "False") == "True"
+DEBUG = getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+ALLOWED_HOSTS = getenv('DJANGO_ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
 
 
 # Application definition
@@ -108,15 +108,17 @@ elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
 # Email Settings
 EMAIL_BACKEND = 'django_ses.SESBackend'
 DEFAULT_FROM_EMAIL = getenv('AWS_SES_FROM_EMAIL')
-AWS_SES_REGION_NAME = getenv('AWS_SES_REGION_NAME')
-AWS_SES_REGION_ENDPOINT = f'email.{AWS_SES_REGION_NAME}.amazonaws.com'
+
 AWS_SES_ACCESS_KEY_ID = getenv('AWS_SES_ACCESS_KEY_ID')
 AWS_SES_SECRET_ACCESS_KEY = getenv('AWS_SES_SECRET_ACCESS_KEY')
-USE_SES_V2 = True
+AWS_SES_REGION_NAME = getenv('AWS_SES_REGION_NAME')
+AWS_SES_REGION_ENDPOINT = f'email.{AWS_SES_REGION_NAME}.amazonaws.com'
 AWS_SES_FROM_EMAIL = getenv('AWS_SES_FROM_EMAIL')
+USE_SES_V2 = True
+
 
 DOMAIN = getenv('DOMAIN')
-SITE_NAME = 'YMF Costing'
+SITE_NAME = 'Cost Auth'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -191,8 +193,8 @@ REST_FRAMEWORK = {
 
 DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': 'password-reset/{uid}/{token}',
-    'ACTIVATION_URL': 'activation/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': True,
+    'ACTIVATION_URL': 'activation/{uid}/{token}',
     'USER_CREATE_PASSWORD_RETYPE': True,
     'PASSWORD_RESET_CONFIRM_RETYPE':True,
     'TOKEN_MODEL': None,
@@ -215,7 +217,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
     'openid'
 ]
 SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['first_name', 'last_name']
-SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email']
+
 
 CORS_ALLOWED_ORIGINS = getenv(
     'CORS_ALLOWED_ORIGINS',
