@@ -166,9 +166,9 @@ else:
     AWS_S3_STORAGE_BUCKET_NAME = getenv('AWS_S3_STORAGE_BUCKET_NAME')
     AWS_S3_REGION_NAME = getenv('AWS_S3_REGION_NAME')
     AWS_S3_ENDPOINT_URL = f'https://{AWS_S3_REGION_NAME}.digitaloceanspaces.com'
-    AWS_S3_OBJECT_PARAMETERS = {
-        'CacheControl': 'max-age=86400'
-    }
+    # AWS_S3_OBJECT_PARAMETERS = {
+    #     'CacheControl': 'max-age=86400'
+    # }
     # AWS_DEFAULT_ACL = 'public-read'
     # AWS_LOCATION = 'static'
     AWS_S3_CUSTOM_DOMAIN = getenv('AWS_S3_CUSTOM_DOMAIN')
@@ -177,27 +177,29 @@ else:
         'default': {
             'BACKEND': 'storages.backends.s3.S3Storage',
             'OPTIONS': {
-                'AWS_S3_ACCESS_KEY_ID' : AWS_S3_ACCESS_KEY_ID,
-                'AWS_S3_SECRET_ACCESS_KEY': AWS_S3_SECRET_ACCESS_KEY,
-                'AWS_S3_ENDPOINT_URL': f'https://{AWS_S3_REGION_NAME}.digitaloceanspaces.com',
-                'AWS_S3_CUSTOM_DOMAIN': AWS_S3_CUSTOM_DOMAIN,  
-                'AWS_S3_STORAGE_BUCKET_NAME': AWS_S3_STORAGE_BUCKET_NAME,
-                'AWS_S3_OBJECT_PARAMETERS': AWS_S3_OBJECT_PARAMETERS,
-                'AWS_DEFAULT_ACL': 'public-read',
-                'AWS_LOCATION' : 'media',
+                'access_key' : AWS_S3_ACCESS_KEY_ID,
+                'secret_key': AWS_S3_SECRET_ACCESS_KEY,
+                'endpoint_url': f'https://{AWS_S3_REGION_NAME}.digitaloceanspaces.com',
+                'custom_domain': AWS_S3_CUSTOM_DOMAIN,  
+                'bucket_name': AWS_S3_STORAGE_BUCKET_NAME,
+                'region_name': AWS_S3_REGION_NAME,
+                # 'AWS_S3_OBJECT_PARAMETERS': AWS_S3_OBJECT_PARAMETERS,
+                'default_acl': 'public-read',
+                'location' : 'media',
             }
         },
         'staticfiles': {
             'BACKEND': 'storages.backends.s3.S3Storage',
             'OPTIONS': {
-                'AWS_S3_ACCESS_KEY_ID' : AWS_S3_ACCESS_KEY_ID,
-                'AWS_S3_SECRET_ACCESS_KEY': AWS_S3_SECRET_ACCESS_KEY,
-                'AWS_S3_ENDPOINT_URL': f'https://{AWS_S3_REGION_NAME}.digitaloceanspaces.com',
-                'AWS_S3_CUSTOM_DOMAIN': AWS_S3_CUSTOM_DOMAIN,  
-                'AWS_S3_STORAGE_BUCKET_NAME': AWS_S3_STORAGE_BUCKET_NAME,
-                'AWS_S3_OBJECT_PARAMETERS': AWS_S3_OBJECT_PARAMETERS,
-                'AWS_DEFAULT_ACL': 'public-read',
-                'AWS_LOCATION' : 'static',
+                'access_key' : AWS_S3_ACCESS_KEY_ID,
+                'secret_key': AWS_S3_SECRET_ACCESS_KEY,
+                'endpoint_url': f'https://{AWS_S3_REGION_NAME}.digitaloceanspaces.com',
+                'custom_domain': AWS_S3_CUSTOM_DOMAIN,  
+                'bucket_name': AWS_S3_STORAGE_BUCKET_NAME,
+                'region_name': AWS_S3_REGION_NAME,
+                # 'AWS_S3_OBJECT_PARAMETERS': AWS_S3_OBJECT_PARAMETERS,
+                'default_acl': 'public-read',
+                'location' : 'static',
             }
         },
     }
