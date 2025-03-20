@@ -115,7 +115,7 @@ AWS_SES_REGION_NAME = getenv('AWS_SES_REGION_NAME')
 AWS_SES_REGION_ENDPOINT = f'email.{AWS_SES_REGION_NAME}.amazonaws.com'
 AWS_SES_FROM_EMAIL = getenv('AWS_SES_FROM_EMAIL')
 USE_SES_V2 = True
-
+AWS_MEDIA_LOCATION = 'media'
 
 DOMAIN = getenv('DOMAIN')
 SITE_NAME = 'Cost Auth'
@@ -173,6 +173,10 @@ else:
     AWS_S3_CUSTOM_DOMAIN = getenv('AWS_S3_CUSTOM_DOMAIN')
     STORAGES = {
         'default': {
+            # 'BACKEND': 'custom_storages.CustomS3Boto3Storage',
+            # 'BACKEND': 'storages.backends.s3boto3.S3StaticStorage',
+            # 'BACKEND': 'storages.backends.s3.S3Storage',
+
             'BACKEND': 'custom_storages.CustomS3Boto3Storage',
             'OPTIONS': {
                 'access_key' : AWS_S3_ACCESS_KEY_ID,
