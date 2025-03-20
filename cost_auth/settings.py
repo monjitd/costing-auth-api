@@ -155,7 +155,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 if DEVELOPMENT_MODE is True: 
-    STATIC_URL = 'static/'
+    STATIC_URL = '/static/'
     STATIC_ROOT = BASE_DIR / 'static'
     MEDIA_URL = 'media/'
     MEDIA_ROOT = BASE_DIR / 'media'
@@ -184,7 +184,7 @@ else:
                 'AWS_LOCATION' : 'media',
                 'AWS_S3_CUSTOM_DOMAIN': AWS_S3_CUSTOM_DOMAIN,    
             }
-            },
+        },
         'staticfiles': {
             'BACKEND': 'storages.backends.s3boto3.s3Boto3Storage',
             'OPTIONS': {
@@ -196,7 +196,7 @@ else:
                 'AWS_DEFAULT_ACL': 'public-read',
                 'AWS_LOCATION' : 'static',  
             }
-            },
+        },
     }
 
 AUTHENTICATION_BACKENDS = [
