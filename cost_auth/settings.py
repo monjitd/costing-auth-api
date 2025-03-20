@@ -33,8 +33,7 @@ DEVELOPMENT_MODE = getenv('DEVELOPMENT_MODE', 'False') == 'True'
 SECRET_KEY = getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = getenv('DEBUG', 'False') == 'True'
-DEBUG = True
+DEBUG = getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = getenv('DJANGO_ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
 
@@ -172,7 +171,6 @@ else:
     # AWS_DEFAULT_ACL = 'public-read'
     # AWS_LOCATION = 'static'
     AWS_S3_CUSTOM_DOMAIN = getenv('AWS_S3_CUSTOM_DOMAIN')
-    print("AWS_S3_CUSTOM_DOMAIN:",AWS_S3_CUSTOM_DOMAIN)
     STORAGES = {
         'default': {
             'BACKEND': 'custom_storages.CustomS3Boto3Storage',
