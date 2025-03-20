@@ -191,7 +191,7 @@ else:
             }
         },
         'staticfiles': {
-            'BACKEND': 'storages.backends.s3boto3.S3StaticStorage',
+            'BACKEND': 'storages.backends.s3.S3Storage',
             'OPTIONS': {
                 'access_key' : AWS_S3_ACCESS_KEY_ID,
                 'secret_key': AWS_S3_SECRET_ACCESS_KEY,
