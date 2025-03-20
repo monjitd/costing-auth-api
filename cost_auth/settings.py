@@ -168,13 +168,35 @@ else:
     AWS_S3_OBJECT_PARAMETERS = {
         'CacheControl': 'max-age=86400'
     }
-    AWS_DEFAULT_ACL = 'public-read'
-    AWS_LOCATION = 'static'
+    # AWS_DEFAULT_ACL = 'public-read'
+    # AWS_LOCATION = 'static'
     AWS_S3_CUSTOM_DOMAIN = getenv('AWS_S3_CUSTOM_DOMAIN')
     STORAGES = {
-        'default': {'BACKEND': 'storages.backends.s3boto3.s3Boto3Storage'},
-        'staticfiles': {'BACKEND': 'storages.backends.s3boto3.s3Boto3StaticStorage'}
-
+        'default': {
+            'BACKEND': 'storages.backends.s3boto3.s3Boto3Storage',
+            'OPTIONS': {
+                'AWS_S3_ACCESS_KEY_ID' : AWS_S3_ACCESS_KEY_ID,
+                'AWS_S3_SECRET_ACCESS_KEY': AWS_S3_SECRET_ACCESS_KEY,
+                'AWS_S3_STORAGE_BUCKET_NAME': AWS_S3_STORAGE_BUCKET_NAME,
+                'AWS_S3_ENDPOINT_URL': f'https://{AWS_S3_REGION_NAME}.digitaloceanspaces.com',
+                'AWS_S3_OBJECT_PARAMETERS': AWS_S3_OBJECT_PARAMETERS,
+                'AWS_DEFAULT_ACL': 'public-read',
+                'AWS_LOCATION' : 'media',
+                'AWS_S3_CUSTOM_DOMAIN': AWS_S3_CUSTOM_DOMAIN,    
+            }
+            },
+        'staticfiles': {
+            'BACKEND': 'storages.backends.s3boto3.s3Boto3Storage',
+            'OPTIONS': {
+                'AWS_S3_ACCESS_KEY_ID' : AWS_S3_ACCESS_KEY_ID,
+                'AWS_S3_SECRET_ACCESS_KEY': AWS_S3_SECRET_ACCESS_KEY,
+                'AWS_S3_STORAGE_BUCKET_NAME': AWS_S3_STORAGE_BUCKET_NAME,
+                'AWS_S3_ENDPOINT_URL': f'https://{AWS_S3_REGION_NAME}.digitaloceanspaces.com',
+                'AWS_S3_OBJECT_PARAMETERS': AWS_S3_OBJECT_PARAMETERS,
+                'AWS_DEFAULT_ACL': 'public-read',
+                'AWS_LOCATION' : 'static',  
+            }
+            },
     }
 
 AUTHENTICATION_BACKENDS = [
