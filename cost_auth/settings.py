@@ -191,13 +191,10 @@ else:
             'OPTIONS': {
                 'access_key' : AWS_S3_ACCESS_KEY_ID,
                 'secret_key': AWS_S3_SECRET_ACCESS_KEY,
-                'endpoint_url': f'https://{AWS_S3_REGION_NAME}.digitaloceanspaces.com',
-                'custom_domain': AWS_S3_CUSTOM_DOMAIN,  
                 'bucket_name': AWS_S3_STORAGE_BUCKET_NAME,
-                'region_name': AWS_S3_REGION_NAME,
-                # 'AWS_S3_OBJECT_PARAMETERS': AWS_S3_OBJECT_PARAMETERS,
-                'default_acl': 'public-read',
+                'endpoint_url': f'https://{AWS_S3_REGION_NAME}.digitaloceanspaces.com',
                 'location' : 'static',
+                'default_acl': 'public-read',
             }
         },
     }
