@@ -175,7 +175,7 @@ else:
     print("AWS_S3_CUSTOM_DOMAIN:",AWS_S3_CUSTOM_DOMAIN)
     STORAGES = {
         'default': {
-            'BACKEND': 'storages.backends.s3.S3Storage',
+            'BACKEND': 'custom_storages.CustomS3Boto3Storage',
             'OPTIONS': {
                 'access_key' : AWS_S3_ACCESS_KEY_ID,
                 'secret_key': AWS_S3_SECRET_ACCESS_KEY,
@@ -189,7 +189,7 @@ else:
             }
         },
         'staticfiles': {
-            'BACKEND': 'storages.backends.s3.S3Storage',
+            'BACKEND': 'storages.backends.s3boto3.S3StaticStorage',
             'OPTIONS': {
                 'access_key' : AWS_S3_ACCESS_KEY_ID,
                 'secret_key': AWS_S3_SECRET_ACCESS_KEY,
