@@ -33,7 +33,8 @@ DEVELOPMENT_MODE = getenv('DEVELOPMENT_MODE', 'False') == 'True'
 SECRET_KEY = getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = getenv('DEBUG', 'False') == 'True'
+# DEBUG = getenv('DEBUG', 'False') == 'True'
+DEBUG = True
 
 ALLOWED_HOSTS = getenv('DJANGO_ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
 
@@ -171,33 +172,36 @@ else:
     # AWS_DEFAULT_ACL = 'public-read'
     # AWS_LOCATION = 'static'
     AWS_S3_CUSTOM_DOMAIN = getenv('AWS_S3_CUSTOM_DOMAIN')
+    print("AWS_S3_CUSTOM_DOMAIN:",AWS_S3_CUSTOM_DOMAIN)
     STORAGES = {
         'default': {
             'BACKEND': 'storages.backends.s3.S3Storage',
             'OPTIONS': {
                 'AWS_S3_ACCESS_KEY_ID' : AWS_S3_ACCESS_KEY_ID,
                 'AWS_S3_SECRET_ACCESS_KEY': AWS_S3_SECRET_ACCESS_KEY,
-                'AWS_S3_STORAGE_BUCKET_NAME': AWS_S3_STORAGE_BUCKET_NAME,
                 'AWS_S3_ENDPOINT_URL': f'https://{AWS_S3_REGION_NAME}.digitaloceanspaces.com',
+                'AWS_S3_CUSTOM_DOMAIN': AWS_S3_CUSTOM_DOMAIN,  
+                'AWS_S3_STORAGE_BUCKET_NAME': AWS_S3_STORAGE_BUCKET_NAME,
                 'AWS_S3_OBJECT_PARAMETERS': AWS_S3_OBJECT_PARAMETERS,
                 'AWS_DEFAULT_ACL': 'public-read',
                 'AWS_LOCATION' : 'media',
-                'AWS_S3_CUSTOM_DOMAIN': AWS_S3_CUSTOM_DOMAIN,    
             }
         },
         'staticfiles': {
-            'BACKEND': 'storages.backends.s3.s3Storage',
+            'BACKEND': 'storages.backends.s3.S3Storage',
             'OPTIONS': {
                 'AWS_S3_ACCESS_KEY_ID' : AWS_S3_ACCESS_KEY_ID,
                 'AWS_S3_SECRET_ACCESS_KEY': AWS_S3_SECRET_ACCESS_KEY,
-                'AWS_S3_STORAGE_BUCKET_NAME': AWS_S3_STORAGE_BUCKET_NAME,
                 'AWS_S3_ENDPOINT_URL': f'https://{AWS_S3_REGION_NAME}.digitaloceanspaces.com',
+                'AWS_S3_CUSTOM_DOMAIN': AWS_S3_CUSTOM_DOMAIN,  
+                'AWS_S3_STORAGE_BUCKET_NAME': AWS_S3_STORAGE_BUCKET_NAME,
                 'AWS_S3_OBJECT_PARAMETERS': AWS_S3_OBJECT_PARAMETERS,
                 'AWS_DEFAULT_ACL': 'public-read',
-                'AWS_LOCATION' : 'static',  
+                'AWS_LOCATION' : 'static',
             }
         },
     }
+
 
 AUTHENTICATION_BACKENDS = [
     'social_core.backends.google.GoogleOAuth2',
