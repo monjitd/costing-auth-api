@@ -168,15 +168,10 @@ else:
     # AWS_S3_OBJECT_PARAMETERS = {
     #     'CacheControl': 'max-age=86400'
     # }
-    # AWS_DEFAULT_ACL = 'public-read'
-    # AWS_LOCATION = 'static'
     AWS_S3_CUSTOM_DOMAIN = getenv('AWS_S3_CUSTOM_DOMAIN')
+    AWS_MEDIA_LOCATION = 'media'
     STORAGES = {
         'default': {
-            # 'BACKEND': 'custom_storages.CustomS3Boto3Storage',
-            # 'BACKEND': 'storages.backends.s3boto3.S3StaticStorage',
-            # 'BACKEND': 'storages.backends.s3.S3Storage',
-
             'BACKEND': 'custom_storages.CustomS3Boto3Storage',
             'OPTIONS': {
                 'access_key' : AWS_S3_ACCESS_KEY_ID,
@@ -191,7 +186,7 @@ else:
             }
         },
         'staticfiles': {
-            'BACKEND': 'storages.backends.s3.S3Storage',
+            'BACKEND': 'storages.backends.s3boto3.S3StaticStorage',
             'OPTIONS': {
                 'access_key' : AWS_S3_ACCESS_KEY_ID,
                 'secret_key': AWS_S3_SECRET_ACCESS_KEY,
@@ -229,8 +224,7 @@ DJOSER = {
 }
 
 AUTH_COOKIE = 'access'
-AUTH_COOKIE_ACCESS_MAX_AGE = 60 * 5
-AUTH_COOKIE_REFRESH_MAX_AGE = 60 * 60 * 24
+AUTH_COOKIE_MAX_AGE = 60 * 60 * 24
 AUTH_COOKIE_SECURE = getenv('AUTH_COOKIE_SECURE', 'True') == 'True'
 AUTH_COOKIE_HTTP_ONLY = True
 AUTH_COOKIE_PATH = '/'
